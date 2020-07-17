@@ -16,13 +16,7 @@
       <h3>Name & describe your event</h3>
       <div>
         <label>Title</label>
-        <input
-          v-model="event.title"
-          type="text"
-          placeholder="Title"
-          class="field"
-          :class="{ error: $v.event.title.$error }"
-          @blur="$v.event.title.$touch()"
+        <input v-model="event.title" type="text" placeholder="Title" class="field" :class="{ error: $v.event.title.$error }" @blur="$v.event.title.$touch()"
         >
       </div>
 
@@ -32,14 +26,7 @@
 
       <div>
         <label>Description</label>
-        <input
-          v-model="event.description"
-          type="text"
-          placeholder="Description"
-          class="field"
-          :class="{ error: $v.event.description.$error }"
-          @blur="$v.event.description.$touch()"
-        >
+        <input v-model="event.description" type="text" placeholder="Description" class="field" :class="{ error: $v.event.description.$error }" @blur="$v.event.description.$touch()" >
       </div>
 
       <template v-if="$v.event.description.$error">
@@ -49,14 +36,7 @@
       <h3>Where is your event?</h3>
       <div>
         <label>Location</label>
-        <input
-          v-model="event.location"
-          type="text"
-          placeholder="Location"
-          class="field"
-          :class="{ error: $v.event.location.$error }"
-          @blur="$v.event.location.$touch()"
-        >
+        <input v-model="event.location" type="text" placeholder="Location" class="field" :class="{ error: $v.event.location.$error }" @blur="$v.event.location.$touch()" >
       </div>
 
       <template v-if="$v.event.location.$error">
@@ -132,25 +112,20 @@ export default {
   methods: {
     createEvent() {
       this.$v.$touch()
-      if (!this.$v.$invalid) {
+      if(!this.$v.$invalid){
         NProgress.start()
-        this.$store
-          .dispatch('event/createEvent', this.event)
-          .then(() => {
+        this.$storedispatch('event/createEvent', this.event).then(() => {
             this.$router.push({
               name: 'event-show',
               params: { id: this.event.id }
             })
             this.event = this.createFreshEventObject()
-          })
-          .catch(() => {
-            NProgress.done()
-          })
+          }).catch(() => { NProgress.done() })
       }
     },
     createFreshEventObject() {
-      const user = this.$store.state.user.user
-      const id = Math.floor(Math.random() * 10000000)
+      var user = this.$store.state.user.user
+      var id = Math.floor(Math.random() * 10000000)
 
       return {
         id: id,
