@@ -1,0 +1,58 @@
+{
+  "events": [
+    {
+      "id": 4582797,
+      "user": {
+        "id": "abc123",
+        "name": "Jhon Due"
+      },
+      "category": "animal welfare",
+      "organizer": {
+        "id": "abc123",
+        "name": "Jhon Due"
+      },
+      "title": "Puppy Parade",
+      "description": "Yay pups!",
+      "location": "Puptown ",
+      "date": "2019-02-02T23:27:00.000Z",
+      "time": "1:00",
+      "attendees": []
+    },
+    {
+      "id": 2613117,
+      "user": {
+        "id": "abc123",
+        "name": "Jhon Due"
+      },
+      "category": "nature",
+      "organizer": {
+        "id": "abc123",
+        "name": "Jhon Due"
+      },
+      "title": "Expedition",
+      "description": "Expedition in the mountains",
+      "location": "Colombia",
+      "date": "2020-08-01T00:05:00.000Z",
+      "time": "10:00",
+      "attendees": []
+    },
+    {
+      "id": 2378654,
+      "user": {
+        "id": "abc123",
+        "name": "Jhon Due"
+      },
+      "category": "education",
+      "organizer": {
+        "id": "abc123",
+        "name": "Jhon Due"
+      },
+      "title": "Vue Meetup",
+      "description": "Introduction to Vue World",
+      "location": "Zoom",
+      "date": "2020-07-31T14:20:00.000Z",
+      "time": "14:00",
+      "attendees": []
+    }
+  ]
+}
