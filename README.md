@@ -27,12 +27,11 @@ To run the mock database
 ```
 
 ## TODO:
- - Change font size for whole page to 16px
- - Add route to `event/create` with name `event-create`
- - Add 404 personalized page
+ - Change main font size for to 16px
  - Fix errors
- - Fix styles
- - Refactor code
- - Change pagination to 5 per page
+ - Add route to `event/create` with name `event-create`
+ - Fix/Add styles for EventCard
  - Add remove event
+ - Add 404 personalized page
  - When add a event redirect to event detail
+ - Change pagination to 6 per page
