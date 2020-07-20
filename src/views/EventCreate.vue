@@ -115,10 +115,6 @@ export default {
       if(!this.$v.$invalid){
         NProgress.start()
         this.$storedispatch('event/createEvent', this.event).then(() => {
-            this.$router.push({
-              name: 'event-show',
-              params: { id: this.event.id }
-            })
             this.event = this.createFreshEventObject()
           }).catch(() => { NProgress.done() })
       }
