@@ -1,4 +1,4 @@
-import EventService from '@/services/EventService.js'
+import { postEvent, getEvents, getEventById } from '@/services/EventService.js'
 
 export const namespaced = true
 
@@ -26,18 +26,16 @@ export const mutations = {
 
 export const actions = {
   createEvent({ commit, dispatch }, event) {
-    return EventService.postEvent(event)
-      .then(() => {
+    return postEvent(event).then(() => {
         commit('ADD_EVENT', event)
         commit('SET_EVENT', event)
-        const notification = {
+        var notification = {
           type: 'success',
           message: 'Your event has been created!'
         }
         dispatch('notification/add', notification, { root: true })
-      })
-      .catch(error => {
-        const notification = {
+      }).catch(error => {
+        var notification = {
           type: 'error',
           message: 'There was a problem creating your event: ' + error.message
         }
@@ -46,13 +44,13 @@ export const actions = {
       })
   },
   fetchEvents({ commit, dispatch, state }, { page }) {
-    return EventService.getEvents(state.perPage, page)
+    return getEvents(state.perPage, page)
       .then(response => {
         commit('SET_EVENTS_TOTAL', parseInt(response.headers['x-total-count']))
         commit('SET_EVENTS', response.data)
       })
       .catch(error => {
-        const notification = {
+        var notification = {
           type: 'error',
           message: 'There was a problem fetching events: ' + error.message
         }
@@ -70,7 +68,7 @@ export const actions = {
       commit('SET_EVENT', event)
       return event
     } else {
-      return EventService.getEvent(id).then(response => {
+      return getEvent(id).then(response => {
         commit('SET_EVENT', response.data)
         return response.data
       })

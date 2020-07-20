@@ -30,12 +30,7 @@
 <script>
 import { mapActions } from 'vuex'
 export default {
-  props: {
-    event: {
-      type: Object,
-      required: true
-    }
-  }
+  props: ['event']
 }
 </script>
 <style module>

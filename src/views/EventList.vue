@@ -17,9 +17,9 @@ import { mapState } from 'vuex'
 import store from '@/store/store'
 
 function getPageEvents(routeTo, next) {
-  const currentPage = parseInt(routeTo.query.page) || 1
-  store
-    .dispatch('event/fetchEvents', {
+  var currentPage = parseInt(routeTo.query.page) || 1
+
+  store.dispatch('event/fetchEvents', {
       page: currentPage
     })
     .then(() => {
