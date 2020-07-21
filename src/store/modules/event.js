@@ -1,17 +1,20 @@
-import { postEvent, getEvents, getEventById } from '@/services/EventService.js'
-
+import { default as obj } from '@/services/EventService.js'
+const { getEvents, getEvent, postEvent, deleteEvent } = obj
 export const namespaced = true
 
 export const state = {
   events: [],
   eventsTotal: 0,
   event: {},
-  perPage: 3
+  perPage: 6
 }
 
 export const mutations = {
   ADD_EVENT(state, event) {
     state.events.push(event)
+  },
+  REMOVE_EVENT(state, event) {
+    state.events = state.events.filter(value => value.id != event.id)
   },
   SET_EVENTS(state, events) {
     state.events = events
@@ -26,7 +29,8 @@ export const mutations = {
 
 export const actions = {
   createEvent({ commit, dispatch }, event) {
-    return postEvent(event).then(() => {
+    return postEvent(event)
+      .then(() => {
         commit('ADD_EVENT', event)
         commit('SET_EVENT', event)
         var notification = {
@@ -34,10 +38,30 @@ export const actions = {
           message: 'Your event has been created!'
         }
         dispatch('notification/add', notification, { root: true })
-      }).catch(error => {
+      })
+      .catch(error => {
         var notification = {
           type: 'error',
           message: 'There was a problem creating your event: ' + error.message
+        }
+        dispatch('notification/add', notification, { root: true })
+        throw error
+      })
+  },
+  removeEvent({ commit, dispatch }, event) {
+    return deleteEvent(event.id)
+      .then(() => {
+        commit('REMOVE_EVENT', event)
+        var notification = {
+          type: 'success',
+          message: 'Your event has been deleted!'
+        }
+        dispatch('notification/add', notification, { root: true })
+      })
+      .catch(error => {
+        var notification = {
+          type: 'error',
+          message: 'There was a problem deleting your event: ' + error.message
         }
         dispatch('notification/add', notification, { root: true })
         throw error

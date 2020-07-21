@@ -6,6 +6,7 @@ import EventShow from './views/EventShow.vue'
 import NProgress from 'nprogress'
 import store from '@/store/store'
 import NetworkIssue from './views/NetworkIssue.vue'
+import NotFound from './views/NotFound.vue'
 
 Vue.use(Router)
 
@@ -16,6 +17,12 @@ const router = new Router({
       path: '/',
       name: 'event-list',
       component: EventList,
+      props: true
+    },
+    {
+      path: '/event/create',
+      name: 'event-create',
+      component: EventCreate,
       props: true
     },
     {
@@ -43,6 +50,15 @@ const router = new Router({
       path: '/network-issue',
       name: 'network-issue',
       component: NetworkIssue
+    },
+    {
+      path: '/404',
+      name: '404',
+      component: NotFound
+    },
+    {
+      path: '*',
+      redirect: '/404'
     }
   ]
 })

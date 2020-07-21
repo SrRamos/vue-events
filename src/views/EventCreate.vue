@@ -83,10 +83,14 @@
 import Datepicker from 'vuejs-datepicker'
 import NProgress from 'nprogress'
 import { required } from 'vuelidate/lib/validators'
+import BaseSelect from '@/components/BaseComponents/BaseSelect.vue'
+import BaseButton from '@/components/BaseComponents/BaseButton.vue'
 
 export default {
   components: {
-    Datepicker
+    Datepicker,
+    BaseSelect,
+    BaseButton
   },
   data() {
     const times = []
@@ -112,11 +116,19 @@ export default {
   methods: {
     createEvent() {
       this.$v.$touch()
-      if(!this.$v.$invalid){
+      if (!this.$v.$invalid) {
         NProgress.start()
-        this.$storedispatch('event/createEvent', this.event).then(() => {
+        this.$store
+          .dispatch('event/createEvent', this.event)
+          .then(() => {
             this.event = this.createFreshEventObject()
-          }).catch(() => { NProgress.done() })
+            this.$router.push({
+              path: `/event/${this.$store.state.event.event.id}`
+            })
+          })
+          .catch(() => {
+            NProgress.done()
+          })
       }
     },
     createFreshEventObject() {

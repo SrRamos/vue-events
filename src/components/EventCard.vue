@@ -10,18 +10,22 @@
 
 <script>
 import DateFilter from '@/filters/date'
+import BaseIcon from '@/components/BaseComponents/BaseIcon.vue'
 
 export default {
   props: {
     event: Object
   },
+  components: {
+    BaseIcon
+  },
   filters: {
-    'date': DateFilter
+    date: DateFilter
   }
 }
 </script>
 
-<style module>
+<style scoped>
 .event-card {
   padding: 20px;
   margin-bottom: 24px;
