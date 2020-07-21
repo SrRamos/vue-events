@@ -27,7 +27,7 @@ html {
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
-  font-size: 32px;
+  font-size: 16px;
   line-height: 1.5;
 }
 #app {

@@ -25,15 +25,44 @@
         <b>{{ attendee.name }}</b>
       </li>
     </ul>
+
+    <BaseButton @click="deleteEvent" type="button" buttonClass="-fill-gradient">Remove Event</BaseButton>
   </div>
 </template>
 <script>
-import { mapActions } from 'vuex'
+import NProgress from 'nprogress'
+import BaseIcon from '@/components/BaseComponents/BaseIcon.vue'
+import date from '@/filters/date'
+import BaseButton from '@/components/BaseComponents/BaseButton.vue'
+
 export default {
-  props: ['event']
+  props: ['event'],
+  components: {
+    BaseIcon,
+    BaseButton
+  },
+  filters: {
+    date
+  },
+  methods: {
+    deleteEvent() {
+      NProgress.start()
+      this.$store
+        .dispatch('event/removeEvent', this.event)
+        .then(() => {
+          this.event = this.createFreshEventObject()
+          this.$router.push({
+            path: '/'
+          })
+        })
+        .catch(() => {
+          NProgress.done()
+        })
+    }
+  }
 }
 </script>
-<style module>
+<style scoped>
 .location {
   margin-bottom: 0;
 }
